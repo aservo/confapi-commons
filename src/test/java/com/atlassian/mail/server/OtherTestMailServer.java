@@ -1,4 +1,4 @@
-package atlassian.mail.server;
+package com.atlassian.mail.server;
 
 import com.atlassian.mail.server.MailServer;
 

@@ -1,6 +1,6 @@
 package de.aservo.atlassian.confapi.model;
 
-import atlassian.mail.server.DefaultTestSmtpMailServerImpl;
+import com.atlassian.mail.server.DefaultTestSmtpMailServerImpl;
 import com.atlassian.mail.server.SMTPMailServer;
 import org.junit.Test;
 import org.junit.runner.RunWith;

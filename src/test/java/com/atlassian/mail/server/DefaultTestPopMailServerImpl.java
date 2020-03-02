@@ -1,10 +1,10 @@
-package atlassian.mail.server;
+package com.atlassian.mail.server;
 
 import com.atlassian.mail.server.impl.PopMailServerImpl;
 
-public class OtherTestPopMailServerImpl extends PopMailServerImpl implements OtherTestPopMailServer {
+public class DefaultTestPopMailServerImpl extends PopMailServerImpl implements DefaultTestPopMailServer {
 
-    public OtherTestPopMailServerImpl() {
+    public DefaultTestPopMailServerImpl() {
         super(
                 null,
                 NAME,
@@ -17,7 +17,5 @@ public class OtherTestPopMailServerImpl extends PopMailServerImpl implements Oth
                 TIMEOUT
         );
     }
-
-
 
 }

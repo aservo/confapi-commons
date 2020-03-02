@@ -1,7 +1,6 @@
-package atlassian.mail.server;
+package com.atlassian.mail.server;
 
 import com.atlassian.mail.MailProtocol;
-import com.atlassian.mail.server.PopMailServer;
 
 public interface OtherTestPopMailServer extends DefaultTestMailServer, PopMailServer {
 

@@ -1,8 +1,7 @@
-package atlassian.mail.server;
+package com.atlassian.mail.server;
 
 import com.atlassian.mail.MailConstants;
 import com.atlassian.mail.MailProtocol;
-import com.atlassian.mail.server.SMTPMailServer;
 
 public interface DefaultTestSmtpMailServer extends DefaultTestMailServer, SMTPMailServer {
 

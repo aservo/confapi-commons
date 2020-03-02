@@ -1,10 +1,10 @@
-package atlassian.mail.server;
+package com.atlassian.mail.server;
 
 import com.atlassian.mail.server.impl.SMTPMailServerImpl;
 
-public class OtherTestSmtpMailServerImpl extends SMTPMailServerImpl implements OtherTestSmtpMailServer {
+public class DefaultTestSmtpMailServerImpl extends SMTPMailServerImpl implements DefaultTestSmtpMailServer {
 
-    public OtherTestSmtpMailServerImpl() {
+    public DefaultTestSmtpMailServerImpl() {
         super(
                 null,
                 NAME,
