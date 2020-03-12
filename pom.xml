@@ -46,22 +46,55 @@
     </developers>
 
     <properties>
+        <amps.version>8.0.2</amps.version>
+        <atlassian.spring.scanner.version>2.1.5</atlassian.spring.scanner.version>
         <atlassian-mail.version>5.0.0</atlassian-mail.version>
+        <atlassian-crowd.version>2.10.6</atlassian-crowd.version>
         <jsr311-api.version>1.1.1</jsr311-api.version>
         <jaxb-api.version>2.3.1</jaxb-api.version>
         <commons-lang3.version>3.9</commons-lang3.version>
-        <junit.version>4.12</junit.version>
+        <lombok.version>1.18.10</lombok.version>
+        <validation-api.version>1.1.0.FINAL</validation-api.version>
+        <spring-context.version>5.2.4.RELEASE</spring-context.version>
+        <jersey-client.version>1.12</jersey-client.version>
+        <hibernate-validator.version>5.2.1.Final</hibernate-validator.version>
+        <javax.el-api.version>2.2.4</javax.el-api.version>
+        <log4j.version>1.2.17</log4j.version>
+        <maven-jar-plugin.version>3.0.2</maven-jar-plugin.version>
         <mockito.version>2.28.2</mockito.version>
         <hamcrest.version>2.2</hamcrest.version>
+        <junit.version>4.12</junit.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>com.atlassian.mail</groupId>
-            <artifactId>atlassian-mail</artifactId>
-            <version>5.0.0</version>
+            <groupId>com.atlassian.plugin</groupId>
+            <artifactId>atlassian-spring-scanner-annotation</artifactId>
+            <version>${atlassian.spring.scanner.version}</version>
             <scope>provided</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.atlassian.mail</groupId>
+            <artifactId>atlassian-mail</artifactId>
+            <version>${atlassian-mail.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.atlassian.crowd</groupId>
+            <artifactId>crowd-api</artifactId>
+            <version>${atlassian-crowd.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.atlassian.crowd</groupId>
+            <artifactId>crowd-remote</artifactId>
+            <version>${atlassian-crowd.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
 
         <dependency>
             <groupId>javax.ws.rs</groupId>
@@ -81,6 +114,27 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${commons-lang3.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>${validation-api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring-context.version}</version>
             <scope>provided</scope>
         </dependency>
 
@@ -108,7 +162,42 @@
         <dependency>
             <groupId>com.sun.jersey</groupId>
             <artifactId>jersey-client</artifactId>
-            <version>1.12</version>
+            <version>${jersey-client.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate-validator.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator-annotation-processor</artifactId>
+            <version>${hibernate-validator.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.el</groupId>
+            <artifactId>javax.el-api</artifactId>
+            <version>${javax.el-api.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.glassfish.web</groupId>
+            <artifactId>javax.el</artifactId>
+            <version>${javax.el-api.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -118,7 +207,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>3.0.2</version>
+                <version>${maven-jar-plugin.version}</version>
                 <executions>
                     <execution>
                         <goals>
