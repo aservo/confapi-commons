@@ -6,10 +6,11 @@ import com.atlassian.crowd.embedded.api.DirectoryType;
 import com.atlassian.crowd.exception.DirectoryCurrentlySynchronisingException;
 import com.atlassian.crowd.model.directory.ImmutableDirectory;
 import de.aservo.atlassian.confapi.model.UserDirectoryBean;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import javax.validation.ValidationException;
 import java.util.Collections;
@@ -24,19 +25,15 @@ import static com.atlassian.crowd.model.directory.DirectoryImpl.ATTRIBUTE_KEY_US
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.mock;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserDirectoryServiceTest {
 
+    @Mock
     private CrowdDirectoryService crowdDirectoryService;
-    private UserDirectoryService userDirectoryService;
 
-    @Before
-    public void setup() {
-        crowdDirectoryService = mock(CrowdDirectoryService.class);
-        userDirectoryService = new UserDirectoryServiceImpl(crowdDirectoryService);
-    }
+    @InjectMocks
+    private UserDirectoryServiceImpl userDirectoryService;
 
     @Test
     public void testGetDirectories() {

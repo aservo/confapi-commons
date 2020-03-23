@@ -5,7 +5,7 @@ import com.atlassian.crowd.embedded.api.DirectoryType;
 import com.atlassian.crowd.model.directory.DirectoryImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Map;
 

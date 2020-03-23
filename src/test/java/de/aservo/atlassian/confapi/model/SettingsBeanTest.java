@@ -4,7 +4,7 @@ import com.atlassian.mail.server.DefaultTestSmtpMailServerImpl;
 import com.atlassian.mail.server.SMTPMailServer;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;

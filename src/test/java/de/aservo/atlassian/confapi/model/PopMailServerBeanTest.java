@@ -4,7 +4,7 @@ import com.atlassian.mail.server.DefaultTestPopMailServerImpl;
 import com.atlassian.mail.server.PopMailServer;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import static com.atlassian.mail.MailConstants.DEFAULT_TIMEOUT;
 import static org.junit.Assert.assertEquals;
