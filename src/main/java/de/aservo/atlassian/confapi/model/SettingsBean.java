@@ -1,5 +1,6 @@
 package de.aservo.atlassian.confapi.model;
 
+import de.aservo.atlassian.confapi.constants.ConfAPI;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -9,10 +10,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 /**
  * Bean for general settings in REST requests.
  */
-@XmlRootElement(name = SettingsBean.SETTINGS_NAME)
+@XmlRootElement(name = ConfAPI.SETTINGS)
 public class SettingsBean {
-
-    public static final String SETTINGS_NAME = "settings";
 
     @XmlElement
     private final String baseurl;

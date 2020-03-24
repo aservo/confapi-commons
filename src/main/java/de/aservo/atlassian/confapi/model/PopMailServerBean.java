@@ -1,6 +1,7 @@
 package de.aservo.atlassian.confapi.model;
 
 import com.atlassian.mail.server.PopMailServer;
+import de.aservo.atlassian.confapi.constants.ConfAPI;
 import de.aservo.atlassian.confapi.exception.NoContentException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -16,10 +17,8 @@ import static com.atlassian.mail.MailConstants.DEFAULT_TIMEOUT;
 /**
  * Bean for POP mail server in REST requests.
  */
-@XmlRootElement(name = PopMailServerBean.POP_NAME)
+@XmlRootElement(name = ConfAPI.MAIL_POP)
 public class PopMailServerBean {
-
-    public static final String POP_NAME = "pop";
 
     @XmlElement
     private final String name;

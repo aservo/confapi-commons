@@ -3,6 +3,7 @@ package de.aservo.atlassian.confapi.model;
 import com.atlassian.crowd.embedded.api.Directory;
 import com.atlassian.crowd.embedded.api.DirectoryType;
 import com.atlassian.crowd.model.directory.ImmutableDirectory;
+import de.aservo.atlassian.confapi.constants.ConfAPI;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -23,7 +24,7 @@ import static com.atlassian.crowd.model.directory.DirectoryImpl.ATTRIBUTE_KEY_US
  */
 @Data
 @NoArgsConstructor
-@XmlRootElement(name = "userDirectory")
+@XmlRootElement(name = ConfAPI.DIRECTORY)
 public class UserDirectoryBean {
 
     @XmlElement

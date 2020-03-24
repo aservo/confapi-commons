@@ -1,6 +1,7 @@
 package de.aservo.atlassian.confapi.model;
 
 import com.atlassian.mail.server.SMTPMailServer;
+import de.aservo.atlassian.confapi.constants.ConfAPI;
 import de.aservo.atlassian.confapi.exception.NoContentException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -16,10 +17,8 @@ import static com.atlassian.mail.MailConstants.DEFAULT_TIMEOUT;
 /**
  * Bean for SMTP mail server in REST requests.
  */
-@XmlRootElement(name = SmtpMailServerBean.SMTP_NAME)
+@XmlRootElement(name = ConfAPI.MAIL_SMTP)
 public class SmtpMailServerBean {
-
-    public static final String SMTP_NAME = "smtp";
 
     @XmlElement
     private final String name;
