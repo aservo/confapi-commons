@@ -16,3 +16,8 @@ Library for common sources of the ConfAPI plugins:
 * [ConfAPI for Confluence](https://github.com/aservo/confluence-confapi-plugin)
 * [ConfAPI for Bitbucket](https://github.com/aservo/bitbucket-confapi-plugin)
 * [ConfAPI for Crowd](https://github.com/aservo/crowd-confapi-plugin)
+
+Important Links
+---------------
+
+* [Atlassian Support End of Life Policy](https://confluence.atlassian.com/support/atlassian-support-end-of-life-policy-201851003.html)
