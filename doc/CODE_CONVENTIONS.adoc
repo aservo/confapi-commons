@@ -1,0 +1,87 @@
+= Code Conventions
+
+The code conventions are valid for all ConfAPI projects for now.
+
+== Naming and Structure
+
+=== Quick Reference
+
+* Model Class: `EntityBean`
+* Model JSON Name: `entity` (`@XmlRootElement(name = ConfAPI.ENTITY)`)
+* Model Collection Class: `EntitiesBean`
+* Model JSON Name: `entities` (`@XmlRootElement(name = ConfAPI.ENTITIES)`)
+* REST Endpoint Class: `EntitiesResource`
+* REST Endpoint Name: `entities` (`@Path(ConfAPI.ENTITIES)`)
+* Service Class: `EntitiesService`
+
+=== Model
+
+We are using [Lombok](https://projectlombok.org/) for generating constructors, getters and setters.
+They always have to be annotated with the `@Data` annotation.
+
+The `@XmlRootElement` should always be named by a constant defined in the `ConfAPI` class.
+
+==== Entities
+
+Entity beans should only use the `@NoArgsConstructor` to make sure reordering, adding and removing member variables does
+not break the build or behaviour of any dependent because the parametrized constructor was used to create instances.
+
+Example:
+
+[source]
+----
+@Data
+@NoArgsConstructor
+@XmlRootElement(name = ConfAPI.ENTITY)
+public class EntityBean {
+
+    @XmlElement
+    @NotNull
+    private String name;
+
+    @XmlElement
+    private String description;
+
+}
+----
+
+Please note that the constant `ConfAPI.ENTITY` defines a string `entity`.
+The name of the model class has to match the name of that constant.
+
+Be careful with using validators like `@NotNull`.
+Make sure that the attribute really has to be set in all possible cases when you use it.
+
+Whenever necessary, the auto-generated methods may be overridden manually to enforce a specific behaviour.
+For example, if you want to make sure that an empty description is considered null, you may add:
+
+[source]
+----
+    public String getDescription() {
+        if (StringUtils.isNotBlank(description)) {
+            return description;
+        }
+
+        return null;
+    }
+----
+
+==== Entity Collections
+
+We use entity collection beans to hold a collection of entity beans and to specify the return type when the REST API
+returns such a collection.
+
+Thus, there is always only a single attribute necessary which allows using an `@AllArgsConstructor`.
+The pattern of an entity collection always looks like this:
+
+{source]
+----
+@Data
+@AllArgsConstructor
+@XmlRootElement(name = ConfAPI.ENTITIES)
+public class EntitiesBean {
+
+    @XmlElement
+    private Collection<EntityBean> entities;
+
+}
+----
