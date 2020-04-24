@@ -21,3 +21,6 @@ Important Links
 ---------------
 
 * [Atlassian Support End of Life Policy](https://confluence.atlassian.com/support/atlassian-support-end-of-life-policy-201851003.html)
+* Permissions Overview
+  * Confluence: [Global Permissions Overview](https://confluence.atlassian.com/doc/global-permissions-overview-138709.html)
+  * Jira: [Managing global permissions](https://confluence.atlassian.com/adminjiraserver079/managing-global-permissions-950288425.html)
