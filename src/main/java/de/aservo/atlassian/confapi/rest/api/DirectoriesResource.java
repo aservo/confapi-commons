@@ -28,7 +28,6 @@ public interface DirectoriesResource {
             summary = "Get the list of user directories",
             responses = {
                     @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(implementation = DirectoriesBean.class))),
-                    @ApiResponse(responseCode = "400", content = @Content(schema = @Schema(implementation = ErrorCollection.class)))
             }
     )
     Response getDirectories();
@@ -42,7 +41,8 @@ public interface DirectoriesResource {
             description = "Any existing directory with the same name will be removed before adding the new one",
             responses = {
                     @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(implementation = DirectoryBean.class))),
-                    @ApiResponse(responseCode = "400", content = @Content(schema = @Schema(implementation = ErrorCollection.class)))
+                    @ApiResponse(responseCode = "400", content = @Content(schema = @Schema(implementation = ErrorCollection.class))),
+                    @ApiResponse(responseCode = "500", content = @Content(schema = @Schema(implementation = ErrorCollection.class)))
             }
     )
     Response setDirectory(
