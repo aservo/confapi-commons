@@ -53,7 +53,7 @@ public class ApplicationLinkBean {
     private URI rpcUrl;
 
     @XmlElement
-    private boolean primary;
+    private Boolean primary;
 
     @XmlElement
     private ApplicationLinkStatus status;

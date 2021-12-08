@@ -35,7 +35,7 @@ public class LicenseBean {
     private Date expiryDate;
 
     @XmlElement
-    private int maxUsers;
+    private Integer maxUsers;
 
     @XmlElement
     private String key;

@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.XmlElement;
 @NoArgsConstructor
 public abstract class AbstractMailServerProtocolBean {
 
-    public static final Long DEFAULT_TIMEOUT = 10000L;
+    public static final Long DEFAULT_TIMEOUT = 10000L; //TODO still needed?
 
     @XmlElement
     private String name;
@@ -46,7 +46,8 @@ public abstract class AbstractMailServerProtocolBean {
      *
      * @param port the port
      */
-    @JsonIgnore     //prevent "Conflicting setter definitions for property \"port\", see https://stackoverflow.com/questions/6346018/deserializing-json-into-object-with-overloaded-methods-using-jackson
+    @JsonIgnore
+    //prevent "Conflicting setter definitions for property \"port\", see https://stackoverflow.com/questions/6346018/deserializing-json-into-object-with-overloaded-methods-using-jackson
     public void setPort(
             final int port) {
 
@@ -61,8 +62,10 @@ public abstract class AbstractMailServerProtocolBean {
     public void setPort(
             final String port) {
 
-        if (StringUtils.isNotBlank(port)) {
+        if (port != null) {
             this.port = Integer.parseInt(port);
+        } else {
+            this.port = null; // Explicitly allow setting null
         }
     }
 
@@ -71,25 +74,13 @@ public abstract class AbstractMailServerProtocolBean {
      *
      * @param protocol the protocol
      */
-     public void setProtocol(
+    public void setProtocol(
             final String protocol) {
 
-        if (StringUtils.isNotBlank(protocol)) {
+        if (protocol != null) {
             this.protocol = protocol.toLowerCase();
+        } else {
+            this.protocol = null; // Explicitly allow setting null
         }
     }
-
-    /**
-     * Return set timeout or default timeout of 10000L if null.
-     *
-     * @return timeout
-     */
-    public Long getTimeout() {
-        if (timeout == null) {
-            return DEFAULT_TIMEOUT;
-        }
-
-        return timeout;
-    }
-
 }
