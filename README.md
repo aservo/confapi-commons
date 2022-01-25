@@ -24,59 +24,77 @@ Library for common sources of the ConfAPI plugins:
 
 ### What is ConfAPI?
 
-Our ConfAPI Plugin is used to set the attributes:values for example the LookAndFeel settings like ContentText,
-Button-color, etc. In this guide we will show you some examples with the endpoint `/settings`.
+Our ConfAPI Plugin is used to set the attributes:values for several endpoints.
+You will find our documentation in the file 'index.adoc'
+Inside this file you find a list of all our endpoints and request options.
 
-#### **How to read index.adoc** ?
+We will explain some essential things and show you example requests with the endpoint `settings` which you can find in the Index number 2.7.
+By clicking on the Index **2.7 Settings** you will get redirected to this section.
+Here you can see the method this endpoint implements. We will take a closer look to the **2.7.2. getSettings**
 
-- in the index.adoc you will find an automatic generated List of all our endpoints and will look like this:
+In the first row you can see the path you need to point at to successfully send a request,
+followed by a short description what this specific method will do, in our case we will 'get the application settings'.
+Also, important information are the content and the return type.
+The content type describes how the object will be displayed and the return type tells you what you will get back when you successfully send a request.
+For more information about the return type you can click on **SettingsBean** and get a better understanding what this return type contains.
 
-![conf-api list example](.github/ConfAPI_for_Crowd_list.png)
+Example:
+#### 3.25. SettingsBean
+| Field Name              |   Required    | Type    |Description| Format |
+|-------------------------|:-------------:|:--------|:---------:|:------:|
+| baseUrl                 |               | URI     |           |  uri   |
+| mode                    |               | String  |           |        |
+| title                   |               | String  |           |        |
+| contactMessage          |               | String  |           |        |
+| externalUserManagement  |               | Boolean |           |        |
 
-- For our example we will check out **2.7 Settings** by clicking it
-- Here you will find all methods for the selected Endpoint sorted by Name.
-- we will take a look at **2.7.1 getLoginPage**
-    - in this section you can find information about this specific `GET` request like:
-        - a short description
-        - Return type
-        - and so on...
+#### **How to send a `GET` request** ?
 
-#### **How to send a request** ?
+>**Every** request needs a specific path. If you run Crowd locally for example the 'base' part of the path will be `http://localhost:4990/crowd/rest/confapi/1/`
 
-- How to get data
-    - to get the data from  *2.7.1 getLoginPage* just select the `GET` method with following
-      path `crowd/rest/confapi/1/settings/branding/login-page`
-    - after you send the request successfully you will receive the content of the returned *
-      SettingsBrandingLoginPageBean* and will look like this:
+We want to set up a request for the *2.7.2 getSettings* endpoint, as the method already says, it is the request to get the current settings.
+First we take the 'base' path and add the path specified in the endpoint documentation.
 
-```json
-{
-  "showLogo": true,
-  "header": "header",
-  "content": "content",
-  "buttonColor": "ffffff"
-}
-```
+>So your *full path* will be this one: `http://localhost:4990/crowd/rest/confapi/1/settings`
 
-#### **How to set data**
 
-- it is quite similar to set the content for the LoginPage. Now that we know how the object looks like we can rebuild it
-  with our settings easily. First we change the Method to `PUT`, then we need to build a json object in our tool with
-  the attributes that we want to change.
+Now, lets build and send the request.
+>- Set the request method to `GET`
+>- Paste the *full path*
+>- Hit the 'Send' button
+>- Get your result 
+>
+>```json
+>{
+>  "baseUrl": "https://example.com",
+>  "title": "Example"
+>}
+>```
+>
+>(copy your result for the next example)
 
- ```json
-{
-  "showLogo": false,
-  "header": "new header",
-  "content": "new content",
-  "buttonColor": "000000"
-}
-```
+#### **How to send a `PUT` request**
+
+it is quite similar to update the settings. Now that we know how the object looks like we can rebuild it with our settings easily.
+
+Now, lets update the current settings.
+>- Set the request method to `PUT`
+>- Paste the *full path* (it's the same path as you can see in the documentation 2.7.2)
+>- Paste your result from the `GET` example (or build your own Json object)
+>- Edit your values you want to change
+>
+>```json
+>{
+>  "baseUrl": "https://myurl.com",
+>  "title": "This is my Title!"
+>}
+>```
+>- Hit the 'Send' button
+>- Get your result
 
 #### **Do I need to type all attributes everytime?**
 
-No. if you just want to change the color, you just build the json object with the attribute:value for the color. our
-addon will only change the color and keeps all other settings with the previous set values.
+No. you can also send a request with only one attribute set. Our plugin is designed to keep all others settings you didn't change.
 
 
 
