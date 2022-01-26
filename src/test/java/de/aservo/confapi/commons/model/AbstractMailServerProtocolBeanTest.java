@@ -4,6 +4,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.Optional;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -19,7 +21,7 @@ public class AbstractMailServerProtocolBeanTest {
         assertEquals(timeout, beanWithTimeoutSet.getTimeout().longValue());
 
         final AbstractMailServerProtocolBean beanWithoutTimeoutSet = new AbstractMailServerProtocolBean() {};
-        assertNotNull(beanWithoutTimeoutSet.getTimeout());
+        assertEquals(AbstractMailServerProtocolBean.DEFAULT_TIMEOUT, beanWithoutTimeoutSet.getTimeout());
     }
 
     @Test
