@@ -17,9 +17,12 @@ public class AbstractMailServerProtocolBeanTest {
         final AbstractMailServerProtocolBean beanWithTimeoutSet = new AbstractMailServerProtocolBean() {};
         beanWithTimeoutSet.setTimeout(timeout);
         assertEquals(timeout, beanWithTimeoutSet.getTimeout().longValue());
+    }
 
+    @Test
+    public void testTimeoutHasNoDefaultValue() {
         final AbstractMailServerProtocolBean beanWithoutTimeoutSet = new AbstractMailServerProtocolBean() {};
-        assertNotNull(beanWithoutTimeoutSet.getTimeout());
+        assertEquals(AbstractMailServerProtocolBean.DEFAULT_TIMEOUT, beanWithoutTimeoutSet.getTimeout());
     }
 
     @Test
