@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>confapi-commons</artifactId>
-    <version>0.2.2-SNAPSHOT</version>
+    <version>0.2.2</version>
     <packaging>jar</packaging>
 
     <name>ConfAPI Commons</name>
