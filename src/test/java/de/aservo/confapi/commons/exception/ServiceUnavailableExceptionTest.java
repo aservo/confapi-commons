@@ -3,7 +3,7 @@ package de.aservo.confapi.commons.exception;
 import de.aservo.confapi.commons.junit.AbstractExceptionTest;
 import org.junit.Test;
 
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response;
 
 import static de.aservo.confapi.commons.exception.ServiceUnavailableException.HEADER_RETRY_AFTER;
 import static org.junit.Assert.assertEquals;

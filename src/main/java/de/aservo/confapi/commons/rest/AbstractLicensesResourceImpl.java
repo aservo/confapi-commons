@@ -5,7 +5,7 @@ import de.aservo.confapi.commons.model.LicensesBean;
 import de.aservo.confapi.commons.rest.api.LicensesResource;
 import de.aservo.confapi.commons.service.api.LicensesService;
 
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response;
 
 public abstract class AbstractLicensesResourceImpl implements LicensesResource {
 

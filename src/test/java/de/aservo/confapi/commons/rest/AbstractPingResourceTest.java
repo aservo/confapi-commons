@@ -1,15 +1,13 @@
 package de.aservo.confapi.commons.rest;
 
 import de.aservo.confapi.commons.rest.api.PingResource;
+import jakarta.ws.rs.core.Response;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import javax.ws.rs.core.Response;
-
-import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.CALLS_REAL_METHODS;
 import static org.mockito.Mockito.mock;
 

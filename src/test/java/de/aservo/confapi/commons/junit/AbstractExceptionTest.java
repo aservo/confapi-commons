@@ -2,7 +2,7 @@ package de.aservo.confapi.commons.junit;
 
 import org.junit.Test;
 
-import javax.ws.rs.WebApplicationException;
+import jakarta.ws.rs.WebApplicationException;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

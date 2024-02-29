@@ -64,8 +64,8 @@
         <javax.el-api.version>2.2.4</javax.el-api.version>
         <javax.inject.version>1</javax.inject.version>
         <jaxb-api.version>2.3.1</jaxb-api.version>
-        <jersey-client.version>1.12</jersey-client.version>
-        <jsr311-api.version>1.1.1</jsr311-api.version>
+        <jakarta.ws.rs-api.version>3.1.0</jakarta.ws.rs-api.version>
+        <jersey-client.version>3.1.5</jersey-client.version>
         <junit.version>4.13.1</junit.version>
         <log4j.version>2.17.1</log4j.version>
         <lombok.version>1.18.28</lombok.version>
@@ -73,7 +73,6 @@
         <mockito.version>2.28.2</mockito.version>
         <spring-context.version>5.2.4.RELEASE</spring-context.version>
         <swagger.version>2.1.1</swagger.version>
-        <wink-client.version>1.4</wink-client.version>
         <!-- Compiler must be 8 so that the plugin can run on Atlassian instances using Java 8 -->
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
@@ -114,7 +113,7 @@
             </dependency>
 
             <dependency>
-                <groupId>com.sun.jersey</groupId>
+                <groupId>org.glassfish.jersey.core</groupId>
                 <artifactId>jersey-client</artifactId>
                 <version>${jersey-client.version}</version>
             </dependency>
@@ -164,9 +163,9 @@
             </dependency>
 
             <dependency>
-                <groupId>org.apache.wink</groupId>
-                <artifactId>wink-client</artifactId>
-                <version>${wink-client.version}</version>
+                <groupId>jakarta.ws.rs</groupId>
+                <artifactId>jakarta.ws.rs-api</artifactId>
+                <version>${jakarta.ws.rs-api.version}</version>
             </dependency>
 
             <dependency>
@@ -211,9 +210,8 @@
         </dependency>
 
         <dependency>
-            <groupId>javax.ws.rs</groupId>
-            <artifactId>jsr311-api</artifactId>
-            <version>${jsr311-api.version}</version>
+            <groupId>jakarta.ws.rs</groupId>
+            <artifactId>jakarta.ws.rs-api</artifactId>
             <scope>provided</scope>
         </dependency>
 
@@ -284,7 +282,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.sun.jersey</groupId>
+            <groupId>org.glassfish.jersey.core</groupId>
             <artifactId>jersey-client</artifactId>
             <scope>test</scope>
         </dependency>
@@ -322,12 +320,6 @@
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.wink</groupId>
-            <artifactId>wink-client</artifactId>
             <scope>test</scope>
         </dependency>
 

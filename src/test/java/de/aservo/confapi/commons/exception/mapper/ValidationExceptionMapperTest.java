@@ -4,9 +4,9 @@ import de.aservo.confapi.commons.model.ErrorCollection;
 import org.junit.Test;
 
 import jakarta.validation.ValidationException;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response;
 
-import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
+import static jakarta.ws.rs.core.Response.Status.BAD_REQUEST;
 import static org.junit.Assert.assertEquals;
 
 public class ValidationExceptionMapperTest {

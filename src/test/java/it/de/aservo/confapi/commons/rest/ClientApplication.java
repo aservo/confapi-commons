@@ -1,6 +1,6 @@
 package it.de.aservo.confapi.commons.rest;
 
-import javax.ws.rs.core.Application;
+import jakarta.ws.rs.core.Application;
 import java.util.Collections;
 import java.util.Set;
 

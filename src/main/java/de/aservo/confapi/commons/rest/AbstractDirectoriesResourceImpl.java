@@ -5,7 +5,7 @@ import de.aservo.confapi.commons.model.DirectoriesBean;
 import de.aservo.confapi.commons.rest.api.DirectoriesResource;
 import de.aservo.confapi.commons.service.api.DirectoriesService;
 
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response;
 
 public abstract class AbstractDirectoriesResourceImpl implements DirectoriesResource {
 

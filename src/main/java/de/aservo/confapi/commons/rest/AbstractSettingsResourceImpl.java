@@ -4,7 +4,7 @@ import de.aservo.confapi.commons.model.SettingsBean;
 import de.aservo.confapi.commons.rest.api.SettingsResource;
 import de.aservo.confapi.commons.service.api.SettingsService;
 
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response;
 
 public abstract class AbstractSettingsResourceImpl implements SettingsResource {
 

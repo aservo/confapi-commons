@@ -4,7 +4,7 @@ import de.aservo.confapi.commons.model.UserBean;
 import de.aservo.confapi.commons.rest.api.UsersResource;
 import de.aservo.confapi.commons.service.api.UsersService;
 
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response;
 
 public class AbstractUsersResourceImpl implements UsersResource {
 
