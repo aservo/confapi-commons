@@ -4,7 +4,7 @@ import de.aservo.confapi.commons.model.SettingsBrandingColorSchemeBean;
 import de.aservo.confapi.commons.rest.api.SettingsBrandingResource;
 import de.aservo.confapi.commons.service.api.SettingsBrandingService;
 
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response;
 import java.io.InputStream;
 
 public abstract class AbstractSettingsBrandingResourceImpl implements SettingsBrandingResource {

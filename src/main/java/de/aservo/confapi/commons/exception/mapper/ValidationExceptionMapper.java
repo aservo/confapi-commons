@@ -2,10 +2,10 @@ package de.aservo.confapi.commons.exception.mapper;
 
 import de.aservo.confapi.commons.model.ErrorCollection;
 
-import javax.validation.ValidationException;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.ext.ExceptionMapper;
-import javax.ws.rs.ext.Provider;
+import jakarta.validation.ValidationException;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.ext.ExceptionMapper;
+import jakarta.ws.rs.ext.Provider;
 import java.util.Arrays;
 
 @Provider

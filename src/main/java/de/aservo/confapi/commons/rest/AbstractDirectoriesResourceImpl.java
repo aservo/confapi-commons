@@ -5,16 +5,14 @@ import de.aservo.confapi.commons.model.DirectoriesBean;
 import de.aservo.confapi.commons.rest.api.DirectoriesResource;
 import de.aservo.confapi.commons.service.api.DirectoriesService;
 
-import javax.ws.rs.core.Response;
-
-import static com.google.common.base.Preconditions.checkNotNull;
+import jakarta.ws.rs.core.Response;
 
 public abstract class AbstractDirectoriesResourceImpl implements DirectoriesResource {
 
     private final DirectoriesService directoriesService;
 
     public AbstractDirectoriesResourceImpl(DirectoriesService directoriesService) {
-        this.directoriesService = checkNotNull(directoriesService);
+        this.directoriesService = directoriesService;
     }
 
     @Override

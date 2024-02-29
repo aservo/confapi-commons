@@ -4,8 +4,8 @@ import de.aservo.confapi.commons.model.ApplicationLinkBean;
 import de.aservo.confapi.commons.model.ApplicationLinksBean;
 import de.aservo.confapi.commons.rest.api.ApplicationLinksResource;
 import de.aservo.confapi.commons.service.api.ApplicationLinksService;
+import jakarta.ws.rs.core.Response;
 
-import javax.ws.rs.core.Response;
 import java.util.UUID;
 
 public abstract class AbstractApplicationLinksResourceImpl implements ApplicationLinksResource {

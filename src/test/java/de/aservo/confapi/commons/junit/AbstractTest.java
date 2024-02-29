@@ -1,7 +1,7 @@
 package de.aservo.confapi.commons.junit;
 
 import static de.aservo.confapi.commons.util.StringUtil.baseName;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public abstract class AbstractTest {
 
@@ -19,8 +19,7 @@ public abstract class AbstractTest {
 
     private Class<?> findBaseClass() {
         final String testClassName = getClass().getCanonicalName();
-        assertTrue("The test class should end with suffix Test",
-                testClassName.endsWith(TEST_CLASS_SUFFIX));
+        assertTrue(testClassName.endsWith(TEST_CLASS_SUFFIX), "The test class should end with suffix Test");
 
         final Class<?> baseClass;
         final String baseClassName = baseName(testClassName, TEST_CLASS_SUFFIX);

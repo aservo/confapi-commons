@@ -2,7 +2,7 @@ package de.aservo.confapi.commons.service.api;
 
 import de.aservo.confapi.commons.model.SettingsBrandingColorSchemeBean;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import java.io.InputStream;
 
 public interface SettingsBrandingService {

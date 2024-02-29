@@ -4,7 +4,7 @@ import de.aservo.confapi.commons.constants.ConfAPI;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.net.URI;

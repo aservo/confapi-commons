@@ -2,16 +2,14 @@ package it.de.aservo.confapi.commons.rest;
 
 import de.aservo.confapi.commons.constants.ConfAPI;
 import de.aservo.confapi.commons.model.UserBean;
-import org.apache.wink.client.ClientAuthenticationException;
-import org.apache.wink.client.ClientResponse;
-import org.apache.wink.client.Resource;
-import org.junit.Test;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.client.Invocation;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import org.junit.jupiter.api.Test;
 
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public abstract class AbstractUserResourceFuncTest {
 
@@ -19,80 +17,95 @@ public abstract class AbstractUserResourceFuncTest {
 
     @Test
     public void testGetUser() {
-        UserBean exampleBean = getExampleBean();
-        Resource usersResource = ResourceBuilder.builder(ConfAPI.USERS + getUserNameQueryParam(exampleBean)).build();
+        final UserBean exampleBean = getExampleBean();
+        final Invocation.Builder usersResource = ResourceBuilder.builder(ConfAPI.USERS + getUserNameQueryParam(exampleBean)).build();
 
-        ClientResponse clientResponse = usersResource.get();
-        assertEquals(Response.Status.OK.getStatusCode(), clientResponse.getStatusCode());
-
-        UserBean userBean = clientResponse.getEntity(UserBean.class);
+        final Response response = usersResource.get();
+        final UserBean userBean = response.readEntity(UserBean.class);
+        assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
         assertNotNull(userBean);
     }
 
     @Test
     public void testSetUserEmailAddress() {
-        UserBean exampleBean = getExampleBean();
-        Resource usersResource = ResourceBuilder.builder(ConfAPI.USERS + getUserNameQueryParam(exampleBean)).build();
+        final UserBean exampleBean = getExampleBean();
+        final Invocation.Builder usersResource = ResourceBuilder.builder(ConfAPI.USERS + getUserNameQueryParam(exampleBean)).build();
 
-        ClientResponse clientResponse = usersResource.put(exampleBean);
-        assertEquals(Response.Status.OK.getStatusCode(), clientResponse.getStatusCode());
-
-        UserBean userBean = clientResponse.getEntity(UserBean.class);
-        assertEquals(exampleBean, userBean);
+        final int status;
+        final UserBean userBean;
+        try (final Response response = usersResource.put(Entity.entity(exampleBean, MediaType.APPLICATION_JSON))) {
+            status = response.getStatus();
+            userBean = response.readEntity(UserBean.class);
+        }
+        assertEquals(Response.Status.OK.getStatusCode(), status);
+        assertEquals(exampleBean.getEmail(), userBean.getEmail());
     }
 
     @Test
     public void testSetUserPassword() {
-        UserBean exampleBean = getExampleBean();
-        Resource usersResource = ResourceBuilder
+        final UserBean exampleBean = getExampleBean();
+        final Invocation.Builder usersResource = ResourceBuilder
                 .builder(ConfAPI.USERS + "/" + ConfAPI.USER_PASSWORD + getUserNameQueryParam(exampleBean))
                 .contentMediaType(MediaType.TEXT_PLAIN)
                 .build();
 
-        ClientResponse clientResponse = usersResource.put(exampleBean.getPassword());
-        assertEquals(Response.Status.OK.getStatusCode(), clientResponse.getStatusCode());
+        final int status;
+        try (final Response response = usersResource.put(Entity.text(exampleBean.getPassword()))) {
+            status = response.getStatus();
+        }
+        assertEquals(Response.Status.OK.getStatusCode(), status);
     }
 
-    @Test(expected = ClientAuthenticationException.class)
+    @Test
     public void testGetUserUnauthenticated() {
-        UserBean exampleBean = getExampleBean();
-        Resource usersResource = ResourceBuilder.builder(ConfAPI.USERS + getUserNameQueryParam(exampleBean))
+        final UserBean exampleBean = getExampleBean();
+        final Invocation.Builder usersResource = ResourceBuilder.builder(ConfAPI.USERS + getUserNameQueryParam(exampleBean))
                 .username("wrong")
                 .password("password")
                 .build();
-        usersResource.get();
+
+        assertEquals(Response.Status.UNAUTHORIZED.getStatusCode(), usersResource.get().getStatus());
     }
 
-    @Test(expected = ClientAuthenticationException.class)
+    @Test
     public void testSetUserEmailAddressUnauthenticated() {
-        UserBean exampleBean = getExampleBean();
-        Resource usersResource = ResourceBuilder.builder(ConfAPI.USERS + getUserNameQueryParam(exampleBean))
+        final UserBean exampleBean = getExampleBean();
+        final Invocation.Builder usersResource = ResourceBuilder.builder(ConfAPI.USERS + getUserNameQueryParam(exampleBean))
                 .username("wrong")
                 .password("password")
                 .build();
-        usersResource.put(exampleBean);
+
+        final int status;
+        try (final Response response = usersResource.put(Entity.entity(exampleBean, MediaType.APPLICATION_JSON))) {
+            status = response.getStatus();
+        }
+        assertEquals(Response.Status.UNAUTHORIZED.getStatusCode(), status);
     }
 
     @Test
     public void testGetUserUnauthorized() {
-        UserBean exampleBean = getExampleBean();
-        Resource usersResource = ResourceBuilder.builder(ConfAPI.USERS + getUserNameQueryParam(exampleBean))
+        final UserBean exampleBean = getExampleBean();
+        final Invocation.Builder usersResource = ResourceBuilder.builder(ConfAPI.USERS + getUserNameQueryParam(exampleBean))
                 .username("user")
                 .password("user")
                 .build();
-        usersResource.get();
-        assertEquals(Response.Status.FORBIDDEN.getStatusCode(), usersResource.put(getExampleBean()).getStatusCode());
+
+        assertEquals(Response.Status.FORBIDDEN.getStatusCode(), usersResource.get().getStatus());
     }
 
     @Test
     public void testSetUserEmailAddressUnauthorized() {
-        UserBean exampleBean = getExampleBean();
-        Resource usersResource = ResourceBuilder.builder(ConfAPI.USERS + getUserNameQueryParam(exampleBean))
+        final UserBean exampleBean = getExampleBean();
+        final Invocation.Builder usersResource = ResourceBuilder.builder(ConfAPI.USERS + getUserNameQueryParam(exampleBean))
                 .username("user")
                 .password("user")
                 .build();
-        usersResource.put(exampleBean);
-        assertEquals(Response.Status.FORBIDDEN.getStatusCode(), usersResource.put(getExampleBean()).getStatusCode());
+
+        final int status;
+        try (final Response response = usersResource.put(Entity.entity(exampleBean, MediaType.APPLICATION_JSON))) {
+            status = response.getStatus();
+        }
+        assertEquals(Response.Status.FORBIDDEN.getStatusCode(), status);
     }
 
     protected String getUserNameQueryParam(UserBean userBean) {

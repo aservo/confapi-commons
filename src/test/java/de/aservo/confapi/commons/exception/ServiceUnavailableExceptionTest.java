@@ -1,13 +1,14 @@
 package de.aservo.confapi.commons.exception;
 
 import de.aservo.confapi.commons.junit.AbstractExceptionTest;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response;
 
 import static de.aservo.confapi.commons.exception.ServiceUnavailableException.HEADER_RETRY_AFTER;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
 
 public class ServiceUnavailableExceptionTest extends AbstractExceptionTest {
 

@@ -1,11 +1,10 @@
 package de.aservo.confapi.commons.junit;
 
-import com.google.common.base.CaseFormat;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public abstract class AbstractBeanTest extends AbstractTest {
 
@@ -14,8 +13,7 @@ public abstract class AbstractBeanTest extends AbstractTest {
     @Test
     public void beanClassNameShouldEndWithSuffixBean() {
         final String beanClassName = getBaseClass().getSimpleName();
-        assertTrue("The model class name should end with suffix " + CLASS_SUFFIX,
-                beanClassName.endsWith(CLASS_SUFFIX));
+        assertTrue(beanClassName.endsWith(CLASS_SUFFIX), "The model class name should end with suffix " + CLASS_SUFFIX);
     }
 
     @Test
@@ -24,8 +22,30 @@ public abstract class AbstractBeanTest extends AbstractTest {
         final String beanClassBaseName = beanClassName.substring(0, beanClassName.length() - CLASS_SUFFIX.length());
         final XmlRootElement xmlRootElement = getBaseClass().getAnnotation(XmlRootElement.class);
         assertNotNull(xmlRootElement);
-        assertEquals("The model class camel-case base name and the xml root element kebab-case base name should match",
-                CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_HYPHEN, beanClassBaseName), xmlRootElement.name());
+        assertEquals(camelCaseToSnakeCase(beanClassBaseName), xmlRootElement.name(),
+                "The model class camel-case base name and the xml root element kebab-case base name should match");
+    }
+
+    private static String camelCaseToSnakeCase(
+            final String camelCase) {
+
+        if (camelCase == null || camelCase.isEmpty()) {
+            return camelCase;
+        }
+
+        final StringBuilder snakeCase = new StringBuilder();
+        snakeCase.append(Character.toLowerCase(camelCase.charAt(0)));
+
+        for (int i = 1; i < camelCase.length(); i++) {
+            char charAt = camelCase.charAt(i);
+            if (Character.isUpperCase(charAt)) {
+                snakeCase.append('-').append(Character.toLowerCase(charAt));
+            } else {
+                snakeCase.append(charAt);
+            }
+        }
+
+        return snakeCase.toString();
     }
 
 }

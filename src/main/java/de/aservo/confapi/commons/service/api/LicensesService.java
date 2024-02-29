@@ -3,7 +3,7 @@ package de.aservo.confapi.commons.service.api;
 import de.aservo.confapi.commons.model.LicenseBean;
 import de.aservo.confapi.commons.model.LicensesBean;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 public interface LicensesService {
 

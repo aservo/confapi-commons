@@ -5,7 +5,7 @@ import de.aservo.confapi.commons.model.GadgetsBean;
 import de.aservo.confapi.commons.rest.api.GadgetsResource;
 import de.aservo.confapi.commons.service.api.GadgetsService;
 
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response;
 
 public abstract class AbstractGadgetsResourceImpl implements GadgetsResource {
 

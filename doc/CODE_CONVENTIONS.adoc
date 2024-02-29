@@ -110,7 +110,7 @@ common API for all ConfAPI products.
 
 ==== Annotations
 
-Resource interfaces have to contain all necessary `javax.ws.rs` and Swagger annotations (used for automated
+Resource interfaces have to contain all necessary `jakarta.ws.rs` and Swagger annotations (used for automated
 documentation generation).
 The only exception is the `@Path` annotation for the resource class itself as otherwise the framework will try to
 instantiate the resource interface.
@@ -189,7 +189,7 @@ public class EntitiesResourceImpl implements EntitiesResource {
 
     @Inject
     public EntitiesResourceImpl(EntitiesService entitiesService) {
-        this.entitiesService = checkNotNull(entitiesService);
+        this.entitiesService = entitiesService;
     }
 
     @Override

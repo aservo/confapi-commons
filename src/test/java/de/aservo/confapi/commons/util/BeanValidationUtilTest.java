@@ -1,12 +1,14 @@
 package de.aservo.confapi.commons.util;
 
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ValidationException;
 import org.hibernate.validator.internal.engine.ConstraintViolationImpl;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.ValidationException;
 import java.util.HashSet;
 import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class BeanValidationUtilTest {
 
@@ -16,11 +18,14 @@ public class BeanValidationUtilTest {
         BeanValidationUtil.processValidationResult(violations);
     }
 
-    @Test(expected = ValidationException.class)
+    @Test
     public void testThrowValidationException() {
         Set<ConstraintViolation<Object>> violations = new HashSet<>();
         violations.add(ConstraintViolationImpl.forBeanValidation("", null, null, "",
                 null, null, null, null, null, null, null));
-        BeanValidationUtil.processValidationResult(violations);
+
+        assertThrows(ValidationException.class, () -> {
+            BeanValidationUtil.processValidationResult(violations);
+        });
     }
 }

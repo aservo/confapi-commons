@@ -5,7 +5,7 @@ import de.aservo.confapi.commons.model.MailServerSmtpBean;
 import de.aservo.confapi.commons.rest.api.MailServerResource;
 import de.aservo.confapi.commons.service.api.MailServerService;
 
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response;
 
 public class AbstractMailServerResourceImpl implements MailServerResource {
 

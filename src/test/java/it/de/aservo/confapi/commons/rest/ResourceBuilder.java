@@ -1,13 +1,11 @@
 package it.de.aservo.confapi.commons.rest;
 
-import org.apache.wink.client.ClientConfig;
-import org.apache.wink.client.Resource;
-import org.apache.wink.client.RestClient;
-import org.apache.wink.client.handlers.BasicAuthSecurityHandler;
-import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
-
-import javax.ws.rs.core.MediaType;
-import java.util.Collections;
+import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.Invocation;
+import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.MediaType;
 
 public class ResourceBuilder {
 
@@ -49,30 +47,44 @@ public class ResourceBuilder {
     }
 
     /**
-     * Creates a new REST client for test purposes. Note that the client must be recreated like this for auth tests.
-     * (Atlassian uses cookies for authentication which may survive otherwise and lead to false test results regarding auth)
+     * Creates a new REST client for test purposes.
      *
-     * @return the built resource
+     * @return the built Invocation.Builder which can be used to make requests
      */
-    public Resource build() {
+    public Invocation.Builder build() {
+        // Create a new client with Jackson provider for JSON processing
+        WebTarget webTarget;
+        try (Client client = ClientBuilder.newClient().register(new JacksonJsonProvider())) {
 
-        //create new client app with Jackson binding
-        final ClientApplication clientApplication = new ClientApplication();
-        clientApplication.setSingletons(Collections.singleton(new JacksonJsonProvider()));
-        final ClientConfig config = new ClientConfig().applications(clientApplication);
+            // Configure HTTP basic authentication
+            client.register(new BasicAuthenticator(username, password));
 
-        //setup http basic auth
-        final BasicAuthSecurityHandler basicAuthHandler = new BasicAuthSecurityHandler();
-        basicAuthHandler.setUserName(username);
-        basicAuthHandler.setPassword(password);
-        config.handlers(basicAuthHandler);
-        RestClient restClient = new RestClient(config);
+            // Configure the target resource URL
+            String resourceUrl = baseUrl + REST_PATH + resourceName;
+            webTarget = client.target(resourceUrl);
+        }
 
-        //configure resource
-        String resourceUrl = baseUrl + REST_PATH + resourceName;
-        Resource resource = restClient.resource(resourceUrl);
-        resource.accept(acceptMediaType);
-        resource.contentType(contentMediaType);
-        return resource;
+        // Return the Invocation.Builder to configure and execute the request
+        return webTarget.request(acceptMediaType).accept(contentMediaType);
+    }
+
+    /**
+     * BasicAuthenticator class to configure HTTP Basic Authentication.
+     */
+    private static class BasicAuthenticator implements jakarta.ws.rs.client.ClientRequestFilter {
+        private final String username;
+        private final String password;
+
+        public BasicAuthenticator(String username, String password) {
+            this.username = username;
+            this.password = password;
+        }
+
+        @Override
+        public void filter(jakarta.ws.rs.client.ClientRequestContext requestContext) {
+            String token = username + ":" + password;
+            String base64Token = java.util.Base64.getEncoder().encodeToString(token.getBytes(java.nio.charset.StandardCharsets.UTF_8));
+            requestContext.getHeaders().add("Authorization", "Basic " + base64Token);
+        }
     }
 }

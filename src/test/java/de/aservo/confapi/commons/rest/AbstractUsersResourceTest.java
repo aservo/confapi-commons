@@ -2,18 +2,17 @@ package de.aservo.confapi.commons.rest;
 
 import de.aservo.confapi.commons.model.UserBean;
 import de.aservo.confapi.commons.service.api.UsersService;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import jakarta.ws.rs.core.Response;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import javax.ws.rs.core.Response;
-
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.doReturn;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class AbstractUsersResourceTest {
 
     @Mock
@@ -21,7 +20,7 @@ public class AbstractUsersResourceTest {
 
     private TestUsersResourceImpl resource;
 
-    @Before
+    @BeforeEach
     public void setup() {
         resource = new TestUsersResourceImpl(usersService);
     }

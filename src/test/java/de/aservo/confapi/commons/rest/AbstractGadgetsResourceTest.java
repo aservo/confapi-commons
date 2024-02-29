@@ -3,19 +3,18 @@ package de.aservo.confapi.commons.rest;
 import de.aservo.confapi.commons.model.GadgetBean;
 import de.aservo.confapi.commons.model.GadgetsBean;
 import de.aservo.confapi.commons.service.api.GadgetsService;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import jakarta.ws.rs.core.Response;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import javax.ws.rs.core.Response;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.doReturn;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class AbstractGadgetsResourceTest {
 
     @Mock
@@ -23,7 +22,7 @@ public class AbstractGadgetsResourceTest {
 
     private TestGadgetsResourceImpl resource;
 
-    @Before
+    @BeforeEach
     public void setup() {
         resource = new TestGadgetsResourceImpl(gadgetsService);
     }
@@ -96,12 +95,12 @@ public class AbstractGadgetsResourceTest {
     @Test
     public void testDeleteGadgets() {
         resource.deleteGadgets(true);
-        assertTrue("Delete Successful", true);
+        assertTrue(true, "Delete Successful");
     }
 
     @Test
     public void testDeleteGadget() {
         resource.deleteGadget(1L);
-        assertTrue("Delete Successful", true);
+        assertTrue(true, "Delete Successful");
     }
 }

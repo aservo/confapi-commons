@@ -3,26 +3,34 @@ package it.de.aservo.confapi.commons.rest;
 import de.aservo.confapi.commons.constants.ConfAPI;
 import de.aservo.confapi.commons.model.LicenseBean;
 import de.aservo.confapi.commons.model.LicensesBean;
-import org.apache.wink.client.ClientAuthenticationException;
-import org.apache.wink.client.ClientResponse;
-import org.apache.wink.client.Resource;
-import org.junit.Test;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.client.Invocation;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import org.junit.jupiter.api.Test;
 
-import javax.ws.rs.core.Response;
 import java.util.Collection;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public abstract class AbstractLicenseResourceFuncTest {
 
     @Test
     public void testGetLicenses() {
-        Resource licensesResource = ResourceBuilder.builder(ConfAPI.LICENSES).build();
+        // Build the request for the licenses resource
+        final Invocation.Builder licenseResource = ResourceBuilder.builder(ConfAPI.LICENSES).build();
 
-        ClientResponse clientResponse = licensesResource.get();
-        assertEquals(Response.Status.OK.getStatusCode(), clientResponse.getStatusCode());
+        // Execute the GET request and receive the response
+        final Response response = licenseResource.get();
 
-        Collection<LicenseBean> licenses = clientResponse.getEntity(LicensesBean.class).getLicenses();
+        // Check the HTTP status code of the response
+        assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
+
+        // Extract the entity (LicensesBean) from the response and get the licenses collection
+        final LicensesBean licensesBean = response.readEntity(LicensesBean.class);
+        final Collection<LicenseBean> licenses = licensesBean.getLicenses();
+
+        // Perform your assertions
         assertNotNull(licenses);
         assertNotEquals(0, licenses.size());
         assertNotNull(licenses.iterator().next().getOrganization());
@@ -30,65 +38,79 @@ public abstract class AbstractLicenseResourceFuncTest {
 
     @Test
     public void testSetLicenses() {
-        Resource licensesResource = ResourceBuilder.builder(ConfAPI.LICENSES).build();
+        final Invocation.Builder licensesResource = ResourceBuilder.builder(ConfAPI.LICENSES).build();
 
-        ClientResponse response = licensesResource.put(getExampleBean());
-        assertEquals(Response.Status.OK.getStatusCode(), response.getStatusCode());
+        try (final Response response = licensesResource.put(Entity.entity(getExampleBean(), MediaType.APPLICATION_JSON_TYPE))) {
+            assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
+        }
 
-        response = licensesResource.get();
-        assertEquals(Response.Status.OK.getStatusCode(), response.getStatusCode());
+        final Response response = licensesResource.get();
+        assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
         assertEquals(getExampleBean().getLicenses().iterator().next().getDescription(),
-                response.getEntity(LicensesBean.class).getLicenses().iterator().next().getDescription());
+                response.readEntity(LicensesBean.class).getLicenses().iterator().next().getDescription());
     }
 
     @Test
     public void testAddLicenses() {
-        Resource licensesResource = ResourceBuilder.builder(ConfAPI.LICENSES).build();
+        final Invocation.Builder licensesResource = ResourceBuilder.builder(ConfAPI.LICENSES).build();
+        final LicenseBean licenseBean = getExampleBean().getLicenses().iterator().next();
 
-        LicenseBean licenseBean = getExampleBean().getLicenses().iterator().next();
-        ClientResponse response = licensesResource.post(licenseBean);
-        assertEquals(Response.Status.OK.getStatusCode(), response.getStatusCode());
+        try (final Response response = licensesResource.post(Entity.entity(licenseBean, MediaType.APPLICATION_JSON_TYPE))) {
+            assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
+        }
 
-        response = licensesResource.get();
-        assertEquals(Response.Status.OK.getStatusCode(), response.getStatusCode());
+        final Response response = licensesResource.get();
+        assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
         assertEquals(licenseBean.getDescription(),
-                response.getEntity(LicensesBean.class).getLicenses().iterator().next().getDescription());
+                response.readEntity(LicensesBean.class).getLicenses().iterator().next().getDescription());
     }
 
-    @Test(expected = ClientAuthenticationException.class)
+    @Test
     public void testGetLicensesUnauthenticated() {
-        Resource licensesResource = ResourceBuilder.builder(ConfAPI.LICENSES)
+        final Invocation.Builder licensesResource = ResourceBuilder.builder(ConfAPI.LICENSES)
                 .username("wrong")
                 .password("password")
                 .build();
-        licensesResource.get();
+
+        assertEquals(Response.Status.UNAUTHORIZED.getStatusCode(), licensesResource.get().getStatus());
     }
 
-    @Test(expected = ClientAuthenticationException.class)
+    @Test
     public void testSetLicensesUnauthenticated() {
-        Resource licensesResource = ResourceBuilder.builder(ConfAPI.LICENSES)
+        final Invocation.Builder licensesResource = ResourceBuilder.builder(ConfAPI.LICENSES)
                 .username("wrong")
                 .password("password")
                 .build();
-        licensesResource.put(getExampleBean());
+
+        final int status;
+        try (final Response response = licensesResource.put(Entity.entity(getExampleBean(), MediaType.APPLICATION_JSON_TYPE))) {
+            status = response.getStatus();
+        }
+        assertEquals(Response.Status.UNAUTHORIZED.getStatusCode(), status);
     }
 
     @Test
     public void testGetLicensesUnauthorized() {
-        Resource licensesResource = ResourceBuilder.builder(ConfAPI.LICENSES)
+        final Invocation.Builder licensesResource = ResourceBuilder.builder(ConfAPI.LICENSES)
                 .username("user")
                 .password("user")
                 .build();
-        assertEquals(Response.Status.FORBIDDEN.getStatusCode(), licensesResource.get().getStatusCode());
+
+        assertEquals(Response.Status.FORBIDDEN.getStatusCode(), licensesResource.get().getStatus());
     }
 
     @Test
     public void testSetLicensesUnauthorized() {
-        Resource licensesResource = ResourceBuilder.builder(ConfAPI.LICENSES)
+        final Invocation.Builder licensesResource = ResourceBuilder.builder(ConfAPI.LICENSES)
                 .username("user")
                 .password("user")
                 .build();
-        assertEquals(Response.Status.FORBIDDEN.getStatusCode(), licensesResource.put(getExampleBean()).getStatusCode());
+
+        final int status;
+        try (final Response response = licensesResource.put(Entity.entity(getExampleBean(), MediaType.APPLICATION_JSON_TYPE))) {
+            status = response.getStatus();
+        }
+        assertEquals(Response.Status.FORBIDDEN.getStatusCode(), status);
     }
 
     protected LicensesBean getExampleBean() {
