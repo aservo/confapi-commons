@@ -1,7 +1,7 @@
 package de.aservo.confapi.commons.exception.mapper;
 
+import com.fasterxml.jackson.databind.JsonMappingException;
 import de.aservo.confapi.commons.model.ErrorCollection;
-import org.codehaus.jackson.map.JsonMappingException;
 import org.junit.Test;
 
 import javax.ws.rs.core.Response;
