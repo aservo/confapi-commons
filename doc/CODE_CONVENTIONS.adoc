@@ -189,7 +189,7 @@ public class EntitiesResourceImpl implements EntitiesResource {
 
     @Inject
     public EntitiesResourceImpl(EntitiesService entitiesService) {
-        this.entitiesService = checkNotNull(entitiesService);
+        this.entitiesService = entitiesService;
     }
 
     @Override
