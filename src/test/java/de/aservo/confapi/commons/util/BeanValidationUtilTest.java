@@ -1,10 +1,10 @@
 package de.aservo.confapi.commons.util;
 
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ValidationException;
 import org.hibernate.validator.internal.engine.ConstraintViolationImpl;
 import org.junit.Test;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.ValidationException;
 import java.util.HashSet;
 import java.util.Set;
 

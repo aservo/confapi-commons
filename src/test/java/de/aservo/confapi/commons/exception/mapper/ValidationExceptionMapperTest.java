@@ -3,7 +3,7 @@ package de.aservo.confapi.commons.exception.mapper;
 import de.aservo.confapi.commons.model.ErrorCollection;
 import org.junit.Test;
 
-import javax.validation.ValidationException;
+import jakarta.validation.ValidationException;
 import javax.ws.rs.core.Response;
 
 import static javax.ws.rs.core.Response.Status.BAD_REQUEST;

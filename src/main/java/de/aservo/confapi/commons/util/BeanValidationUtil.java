@@ -1,10 +1,7 @@
 package de.aservo.confapi.commons.util;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.ValidationException;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
+import jakarta.validation.*;
+
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -15,14 +12,16 @@ import java.util.stream.Collectors;
 public class BeanValidationUtil {
 
     /**
-     * Validates the given bean using javax.validation impl from hibernate reference.
+     * Validates the given bean using Validation from hibernate reference.
      *
      * @param bean the bean
      */
     public static void validate(Object bean) {
-        ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
-        Validator validator = validatorFactory.getValidator();
-        processValidationResult(validator.validate(bean));
+        Validator validator;
+        try (ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory()) {
+            validator = validatorFactory.getValidator();
+            processValidationResult(validator.validate(bean));
+        }
     }
 
     /**

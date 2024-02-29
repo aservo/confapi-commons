@@ -58,8 +58,9 @@
     <properties>
         <commons-lang3.version>3.9</commons-lang3.version>
         <hamcrest.version>2.2</hamcrest.version>
-        <hibernate-validator.version>6.1.5.Final</hibernate-validator.version>
+        <hibernate-validator.version>8.0.1.Final</hibernate-validator.version>
         <jackson-jaxrs.version>1.9.13-atlassian-5</jackson-jaxrs.version>
+        <jakarta.validation-api.version>3.1.0-M1</jakarta.validation-api.version>
         <javax.el-api.version>2.2.4</javax.el-api.version>
         <javax.inject.version>1</javax.inject.version>
         <jaxb-api.version>2.3.1</jaxb-api.version>
@@ -72,7 +73,6 @@
         <mockito.version>2.28.2</mockito.version>
         <spring-context.version>5.2.4.RELEASE</spring-context.version>
         <swagger.version>2.1.1</swagger.version>
-        <validation-api.version>1.1.0.Final</validation-api.version>
         <wink-client.version>1.4</wink-client.version>
         <!-- Compiler must be 8 so that the plugin can run on Atlassian instances using Java 8 -->
         <maven.compiler.source>8</maven.compiler.source>
@@ -135,6 +135,12 @@
                 <groupId>javax.el</groupId>
                 <artifactId>javax.el-api</artifactId>
                 <version>${javax.el-api.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>jakarta.validation</groupId>
+                <artifactId>jakarta.validation-api</artifactId>
+                <version>${jakarta.validation-api.version}</version>
             </dependency>
 
             <dependency>
@@ -226,9 +232,8 @@
         </dependency>
 
         <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-            <version>${validation-api.version}</version>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
             <scope>provided</scope>
         </dependency>
 
