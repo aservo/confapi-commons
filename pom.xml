@@ -56,22 +56,19 @@
     </developers>
 
     <properties>
-        <commons-lang3.version>3.9</commons-lang3.version>
+        <commons-lang3.version>3.14.0</commons-lang3.version>
         <hibernate-validator.version>8.0.1.Final</hibernate-validator.version>
         <jackson.version>2.16.1</jackson.version>
+        <jakarta.el-api.version>6.0.0-M2</jakarta.el-api.version>
         <jakarta.validation-api.version>3.1.0-M1</jakarta.validation-api.version>
-        <javax.el-api.version>2.2.4</javax.el-api.version>
-        <javax.inject.version>1</javax.inject.version>
-        <jaxb-api.version>2.3.1</jaxb-api.version>
         <jakarta.ws.rs-api.version>3.1.0</jakarta.ws.rs-api.version>
         <jersey-client.version>3.1.5</jersey-client.version>
         <junit.version>5.10.2</junit.version>
-        <log4j.version>2.17.1</log4j.version>
-        <lombok.version>1.18.28</lombok.version>
+        <lombok.version>1.18.30</lombok.version>
         <maven-jar-plugin.version>3.0.2</maven-jar-plugin.version>
         <mockito.version>5.10.0</mockito.version>
-        <spring-context.version>5.2.4.RELEASE</spring-context.version>
-        <swagger.version>2.1.1</swagger.version>
+        <spring-context.version>5.3.32</spring-context.version>
+        <swagger.version>2.2.20</swagger.version>
         <!-- Compiler must be 8 so that the plugin can run on Atlassian instances using Java 8 -->
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
@@ -81,6 +78,7 @@
 
     <dependencyManagement>
         <dependencies>
+
             <dependency>
                 <groupId>io.swagger.core.v3</groupId>
                 <artifactId>swagger-annotations</artifactId>
@@ -132,9 +130,9 @@
             </dependency>
 
             <dependency>
-                <groupId>javax.el</groupId>
-                <artifactId>javax.el-api</artifactId>
-                <version>${javax.el-api.version}</version>
+                <groupId>jakarta.el</groupId>
+                <artifactId>jakarta.el-api</artifactId>
+                <version>${jakarta.el-api.version}</version>
             </dependency>
 
             <dependency>
@@ -144,29 +142,21 @@
             </dependency>
 
             <dependency>
-                <groupId>org.glassfish.web</groupId>
-                <artifactId>javax.el</artifactId>
-                <version>${javax.el-api.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.logging.log4j</groupId>
-                <artifactId>log4j-api</artifactId>
-                <version>${log4j.version}</version>
-                <scope>test</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.logging.log4j</groupId>
-                <artifactId>log4j-core</artifactId>
-                <version>${log4j.version}</version>
-                <scope>test</scope>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>jakarta.ws.rs</groupId>
                 <artifactId>jakarta.ws.rs-api</artifactId>
                 <version>${jakarta.ws.rs-api.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring-context.version}</version>
             </dependency>
 
             <dependency>
@@ -204,29 +194,14 @@
         <!-- provided dependencies -->
 
         <dependency>
-            <groupId>javax.inject</groupId>
-            <artifactId>javax.inject</artifactId>
-            <version>${javax.inject.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
             <groupId>jakarta.ws.rs</groupId>
             <artifactId>jakarta.ws.rs-api</artifactId>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <version>${jaxb-api.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>${commons-lang3.version}</version>
             <scope>provided</scope>
         </dependency>
 
@@ -239,14 +214,6 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>${spring-context.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.30</version>
             <scope>provided</scope>
         </dependency>
 
@@ -301,26 +268,8 @@
         </dependency>
 
         <dependency>
-            <groupId>javax.el</groupId>
-            <artifactId>javax.el-api</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.glassfish.web</groupId>
-            <artifactId>javax.el</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
+            <groupId>jakarta.el</groupId>
+            <artifactId>jakarta.el-api</artifactId>
             <scope>test</scope>
         </dependency>
 
