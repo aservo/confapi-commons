@@ -1,9 +1,9 @@
 package de.aservo.confapi.commons.model;
 
 import de.aservo.confapi.commons.junit.AbstractBeanTest;
-import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class DirectoryDelegatingBeanTest extends AbstractBeanTest {
 }

@@ -2,21 +2,21 @@ package de.aservo.confapi.commons.rest;
 
 import de.aservo.confapi.commons.model.SettingsBrandingColorSchemeBean;
 import de.aservo.confapi.commons.service.api.SettingsBrandingService;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
-
 import jakarta.ws.rs.core.Response;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.doReturn;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class AbstractSettingsBrandingResourceTest {
 
     @Mock
@@ -24,7 +24,7 @@ public class AbstractSettingsBrandingResourceTest {
 
     private TestSettingsBrandingResourceImpl resource;
 
-    @Before
+    @BeforeEach
     public void setup() {
         resource = new TestSettingsBrandingResourceImpl(brandingService);
     }

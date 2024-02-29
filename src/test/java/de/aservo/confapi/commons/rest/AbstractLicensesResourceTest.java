@@ -3,18 +3,17 @@ package de.aservo.confapi.commons.rest;
 import de.aservo.confapi.commons.model.LicenseBean;
 import de.aservo.confapi.commons.model.LicensesBean;
 import de.aservo.confapi.commons.service.api.LicensesService;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
-
 import jakarta.ws.rs.core.Response;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.doReturn;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class AbstractLicensesResourceTest {
 
     @Mock
@@ -22,7 +21,7 @@ public class AbstractLicensesResourceTest {
 
     private TestLicensesResourceImpl resource;
 
-    @Before
+    @BeforeEach
     public void setup() {
         resource = new TestLicensesResourceImpl(licensesService);
     }

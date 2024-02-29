@@ -57,7 +57,6 @@
 
     <properties>
         <commons-lang3.version>3.9</commons-lang3.version>
-        <hamcrest.version>2.2</hamcrest.version>
         <hibernate-validator.version>8.0.1.Final</hibernate-validator.version>
         <jackson.version>2.16.1</jackson.version>
         <jakarta.validation-api.version>3.1.0-M1</jakarta.validation-api.version>
@@ -66,11 +65,11 @@
         <jaxb-api.version>2.3.1</jaxb-api.version>
         <jakarta.ws.rs-api.version>3.1.0</jakarta.ws.rs-api.version>
         <jersey-client.version>3.1.5</jersey-client.version>
-        <junit.version>4.13.1</junit.version>
+        <junit.version>5.10.2</junit.version>
         <log4j.version>2.17.1</log4j.version>
         <lombok.version>1.18.28</lombok.version>
         <maven-jar-plugin.version>3.0.2</maven-jar-plugin.version>
-        <mockito.version>2.28.2</mockito.version>
+        <mockito.version>5.10.0</mockito.version>
         <spring-context.version>5.2.4.RELEASE</spring-context.version>
         <swagger.version>2.1.1</swagger.version>
         <!-- Compiler must be 8 so that the plugin can run on Atlassian instances using Java 8 -->
@@ -95,9 +94,11 @@
             </dependency>
 
             <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
                 <version>${junit.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
 
             <dependency>
@@ -107,9 +108,9 @@
             </dependency>
 
             <dependency>
-                <groupId>org.hamcrest</groupId>
-                <artifactId>hamcrest-core</artifactId>
-                <version>${hamcrest.version}</version>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-junit-jupiter</artifactId>
+                <version>${mockito.version}</version>
             </dependency>
 
             <dependency>
@@ -264,8 +265,8 @@
         <!-- test dependencies -->
 
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>
 
@@ -276,8 +277,8 @@
         </dependency>
 
         <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-core</artifactId>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>
 

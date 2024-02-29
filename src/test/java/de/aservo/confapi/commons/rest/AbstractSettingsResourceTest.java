@@ -2,18 +2,17 @@ package de.aservo.confapi.commons.rest;
 
 import de.aservo.confapi.commons.model.SettingsBean;
 import de.aservo.confapi.commons.service.api.SettingsService;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
-
 import jakarta.ws.rs.core.Response;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.doReturn;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class AbstractSettingsResourceTest {
 
     @Mock
@@ -21,7 +20,7 @@ public class AbstractSettingsResourceTest {
 
     private TestSettingsResourceImpl resource;
 
-    @Before
+    @BeforeEach
     public void setup() {
         resource = new TestSettingsResourceImpl(settingsService);
     }

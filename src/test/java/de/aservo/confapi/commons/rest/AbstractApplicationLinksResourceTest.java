@@ -3,21 +3,20 @@ package de.aservo.confapi.commons.rest;
 import de.aservo.confapi.commons.model.ApplicationLinkBean;
 import de.aservo.confapi.commons.model.ApplicationLinksBean;
 import de.aservo.confapi.commons.service.api.ApplicationLinksService;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
-
 import jakarta.ws.rs.core.Response;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.UUID;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.doReturn;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class AbstractApplicationLinksResourceTest {
 
     @Mock
@@ -25,7 +24,7 @@ public class AbstractApplicationLinksResourceTest {
 
     private TestApplicationLinksResourceImpl resource;
 
-    @Before
+    @BeforeEach
     public void setup() {
         resource = new TestApplicationLinksResourceImpl(applicationLinksService);
     }
@@ -101,12 +100,12 @@ public class AbstractApplicationLinksResourceTest {
     @Test
     public void testDeleteApplicationLinks() {
         resource.deleteApplicationLinks(true);
-        assertTrue("Delete Successful", true);
+        assertTrue(true, "Delete Successful");
     }
 
     @Test
     public void testDeleteApplicationLink() {
         resource.deleteApplicationLink(UUID.randomUUID());
-        assertTrue("Delete Successful", true);
+        assertTrue(true, "Delete Successful");
     }
 }

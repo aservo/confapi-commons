@@ -4,21 +4,21 @@ import de.aservo.confapi.commons.model.AbstractDirectoryBean;
 import de.aservo.confapi.commons.model.DirectoriesBean;
 import de.aservo.confapi.commons.model.DirectoryCrowdBean;
 import de.aservo.confapi.commons.service.api.DirectoriesService;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
-
 import jakarta.ws.rs.core.Response;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
 import java.util.Arrays;
 import java.util.Collections;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.doReturn;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class AbstractDirectoriesResourceTest {
 
     @Mock
@@ -26,7 +26,7 @@ public class AbstractDirectoriesResourceTest {
 
     private TestDirectoriesResourceImpl resource;
 
-    @Before
+    @BeforeEach
     public void setup() {
         resource = new TestDirectoriesResourceImpl(directoriesService);
     }
@@ -102,13 +102,13 @@ public class AbstractDirectoriesResourceTest {
     @Test
     public void testDeleteDirectories() {
         resource.deleteDirectories(true);
-        assertTrue("Delete Successful", true);
+        assertTrue(true, "Delete Successful");
     }
 
     @Test
     public void testDeleteDirectory() {
         resource.deleteDirectory(1L);
-        assertTrue("Delete Successful", true);
+        assertTrue(true, "Delete Successful");
     }
 
 }
