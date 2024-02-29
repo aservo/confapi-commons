@@ -7,14 +7,12 @@ import de.aservo.confapi.commons.service.api.DirectoriesService;
 
 import javax.ws.rs.core.Response;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 public abstract class AbstractDirectoriesResourceImpl implements DirectoriesResource {
 
     private final DirectoriesService directoriesService;
 
     public AbstractDirectoriesResourceImpl(DirectoriesService directoriesService) {
-        this.directoriesService = checkNotNull(directoriesService);
+        this.directoriesService = directoriesService;
     }
 
     @Override
